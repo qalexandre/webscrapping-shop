@@ -1,5 +1,5 @@
 import pup from 'puppeteer';
-import { page } from '../server';
+import { io, page } from '../server';
 
 export const getProductsMercado = async (search: string, index: number) => {
     let c = 1;
@@ -43,7 +43,7 @@ export const getProductsMercado = async (search: string, index: number) => {
         obj.link = link;
 
         list.push(obj);
-
+        io.emit('receiveProductsMercadoStatus', c)
         c++;
     }
 

@@ -1,5 +1,5 @@
 import pup from 'puppeteer';
-import { page } from '../server';
+import { io, page } from '../server';
 
 export const getProductsAliExpress = async (search: string, index: number) => {
     let c = 1;
@@ -51,7 +51,7 @@ export const getProductsAliExpress = async (search: string, index: number) => {
             obj.image = image;
     
             list.push(obj);
-    
+            io.emit('receiveProductsAliExpressStatus', c)
             c++;
         }
         
